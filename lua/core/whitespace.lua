@@ -10,17 +10,17 @@ local excluded_filetypes = {"toggleterm", "alpha", 'TelescopePrompt', 'Trouble',
 autocmd("BufWinEnter", {
   callback = function()
 
-    local data = {
-      buf = vim.fn.expand("<abuf>"),
-      file = vim.fn.expand("<afile>"),
-      match = vim.fn.expand("<amatch>"),
-      filetype = vim.fn.expand(vim.bo.filetype)
-    }
+    -- local data = {
+    --   buf = vim.fn.expand("<abuf>"),
+    --   file = vim.fn.expand("<afile>"),
+    --   match = vim.fn.expand("<amatch>"),
+    --   filetype = vim.fn.expand(vim.bo.filetype)
+    -- }
 
-    vim.schedule(function()
-      print(vim.inspect(data))
-      print(vim.bo.filetype)
-    end)
+    -- vim.schedule(function()
+    --   print(vim.inspect(data))
+    --   print(vim.bo.filetype)
+    -- end)
 
     if vim.bo.buftype == 'terminal' then
       return
@@ -69,8 +69,6 @@ function _G.ToggleWhitespaceMatch(mode)
   if vim.tbl_contains(excluded_filetypes, vim.bo.filetype) then
     return
   end
-
-  print("in Toggle")
 
   local pattern = ""
   if mode == "i" then

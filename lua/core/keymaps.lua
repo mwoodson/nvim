@@ -42,11 +42,12 @@ local keymaps = {
     --   desc = "Enter insert mode",
     -- },
 
-    ["<CR>"] = {
-      cmd = ":noh<CR>",
-      desc = "Remove highlighting with ENGER",
-      opt = { expr = true, silent = true },
-    },
+    -- mwoodson note: going to try adding leader key to do thi
+    -- ["<CR>"] = {
+    --   cmd = ":noh<CR>",
+    --   desc = "Remove highlighting with ENGER",
+    --   opt = { expr = true, silent = true },
+    -- },
 
     ["j"] = {
       cmd = "v:count == 0 ? 'gj' : 'j'",

@@ -130,17 +130,17 @@ autocmd("VimResized", {
   group = general,
 })
 
-autocmd("ModeChanged", {
-  desc = "Highlighting matched words when searching",
-  callback = function()
-    if fn.getcmdtype() == "/" or fn.getcmdtype() == "?" then
-      vim.opt.hlsearch = true
-    else
-      vim.opt.hlsearch = false
-    end
-  end,
-  group = general,
-})
+-- autocmd("ModeChanged", {
+--   desc = "Highlighting matched words when searching",
+--   callback = function()
+--     if fn.getcmdtype() == "/" or fn.getcmdtype() == "?" then
+--       vim.opt.hlsearch = true
+--     else
+--       vim.opt.hlsearch = false
+--     end
+--   end,
+--   group = general,
+-- })
 
 autocmd("FileType", {
   desc = "Enable Wrap in these filetypes",

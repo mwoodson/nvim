@@ -27,6 +27,7 @@ return {
       ["Q"] = { ":wqa<cr>", "Save & Quit All" },
       ["w"] = { ":wa<cr>", "Write All" },
       ["c"] = { ":Bdelete!<cr>", "Close Buffer" },
+      ["h"] = { ":nohlsearch<cr>", "Clear Search Highlights" },
       ["m"] = {
         function()
           if vim.bo.filetype == "markdown" then
@@ -156,9 +157,11 @@ return {
       },
       u = {
         name = "Utility Functions",
-        n = { ":set nonumber<cr>", "Turn Off Line Numbers" },
-        l = { ":set list<cr>", "Set List" },
         f = { ":set filetype?<cr>", "Show FileType" },
+        l = { ":set list<cr>", "Set List" },
+        m = { ":set mouse=a", "Enable Mouse" },
+        n = { ":set nonumber<cr>", "Turn Off Line Numbers" },
+        w = { [[<cmd>%s/\s\+$//e<CR>]], "Trim Traailing Whitespace" },
       },
     }
 
