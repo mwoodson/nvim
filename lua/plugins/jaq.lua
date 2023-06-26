@@ -49,7 +49,8 @@ return {
 
       behavior = {
         -- Default type
-        default = "terminal",
+        default = "float",
+        -- default = "terminal",
 
         -- Start in insert mode
         startinsert = true,

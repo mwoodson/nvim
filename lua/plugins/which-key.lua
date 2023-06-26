@@ -23,9 +23,10 @@ return {
     --  ["y"] = { ":%y+<cr>", "Yank All Text" },
       ["e"] = { ":NvimTreeToggle<cr>", "Explorer" },
       ["D"] = { toggle_distraction_free, "Distraction Free" },
-      ["q"] = { ":qa!<cr>", "Quit" },
-      ["Q"] = { ":wqa<cr>", "Save & Quit All" },
+      ["q"] = { ":q<cr>", "Quit" },
+      ["Q"] = { ":qa!<cr>", "Quit All" },
       ["w"] = { ":wa<cr>", "Write All" },
+      ["W"] = { ":wqall<cr>", "Write & Quit All" },
       ["c"] = { ":Bdelete!<cr>", "Close Buffer" },
       ["h"] = { ":nohlsearch<cr>", "Clear Search Highlights" },
       ["m"] = {
@@ -170,7 +171,7 @@ return {
         f = { ":set filetype?<cr>", "Show FileType" },
         l = { ":set list<cr>", "Set List" },
         m = { ":set mouse=a", "Enable Mouse" },
-        n = { ":set nonumber<cr>", "Turn Off Line Numbers" },
+        c = { ":set nonumber | set signcolumn=no<cr>", "Turn Off Left Columns" },
         w = { [[<cmd>%s/\s\+$//e<CR>]], "Trim Traailing Whitespace" },
       },
     }

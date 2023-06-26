@@ -30,7 +30,7 @@ local options = {
   relativenumber = false, -- set relative numbered lines
   numberwidth = 4, -- set number column width to 4 {default 4}
 
-  signcolumn = "no", -- always show the sign column, otherwise it would shift the text each time
+  signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
   wrap = false, -- display lines as one long line
   scrolloff = 8, -- minimal number of columns to scroll horizontally.
   sidescrolloff = 8, -- minimal number of screen columns

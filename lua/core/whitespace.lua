@@ -5,7 +5,7 @@ local augroup = vim.api.nvim_create_augroup
 
 local whtSpcGrp = augroup("ExtraWhiteSpace", { clear = true})
 
-local excluded_filetypes = {"toggleterm", "alpha", 'TelescopePrompt', 'Trouble', 'help', 'TelescopeResults'}
+local excluded_filetypes = {"toggleterm", "alpha", 'TelescopePrompt', 'Trouble', 'help', 'TelescopeResults', 'checkhealth'}
 
 autocmd("BufWinEnter", {
   callback = function()
