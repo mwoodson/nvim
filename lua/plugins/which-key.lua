@@ -154,6 +154,16 @@ return {
         f = { ":ToggleTerm direction=float<cr>", "Float" },
         h = { ":ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
         v = { ":ToggleTerm size=50 direction=vertical<cr>", "Vertical" },
+
+        p = {
+          function()
+            local Terminal = require("toggleterm.terminal").Terminal
+            local python = Terminal:new { cmd = "ipython", hidden = true }
+            python:toggle()
+          end,
+          "iPython",
+        },
+
       },
       u = {
         name = "Utility Functions",
