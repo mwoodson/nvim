@@ -1,0 +1,166 @@
+local set = vim.opt
+
+-- tabs
+set.expandtab = true    -- use spaces instead of tabs
+set.shiftwidth = 4  -- shift 4 spaces when tab
+set.softtabstop = 4 -- insert/delete 4 spaces when tab/bs
+set.tabstop = 4     -- 1 tab == 4 spaces
+
+-- searching
+-- https://linuxcommando.blogspot.com/2008/06/smart-case-insensitive-incremental.html
+set.smartcase = true   -- search case-insensitive only when the pattern contains lowercase characters
+set.ignorecase = true  -- search case-insensitive
+set.incsearch = true   -- search as characters are entered
+set.smartcase = true   -- search case-insensitive only when the pattern contains lowercase characters
+set.wrapscan = true    --  wrap around the end of the file when you search for a pattern.
+
+set.mouse = a     -- enable mouse support
+set.showmatch = true   -- reduce the need for %, the cursor will briefly jump to the matching brace when you insert one.
+set.hlsearch = true    -- it will highlight all matches when you search for a pattern.
+set.vb = true         -- visual bell instead of beeping
+set.history = 500 -- remember more commands and search history
+set.so = 10       -- show 10 lines of context around the cursor when scrolling up or down
+
+-- nvim-compe requirement # see plugins below
+set.completeopt = "menuone,noselect"
+
+-- list trailing whitespaces
+set.list = true
+set.listchars = {
+    tab = "▷·",
+    trail = "·",
+    extends = "◣",
+    precedes = "◢",
+    nbsp = "␣",
+}
+
+-- need to enable highlighting
+vim.cmd[[highlight Whitespace ctermbg=Red]]
+
+
+-- ========================================================================== --
+-- ==                             KEY MAPPINGS                             == --
+-- ========================================================================== --
+
+function map(mode, shortcut, command)
+  vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
+end
+
+function nmap(shortcut, command)
+  map('n', shortcut, command)
+end
+
+function imap(shortcut, command)
+  map('i', shortcut, command)
+end
+
+function vmap(shortcut, command)
+  map('v', shortcut, command)
+end
+
+function cmap(shortcut, command)
+  map('c', shortcut, command)
+end
+
+-- helper vars
+local remap = {remap = true}
+local silent = {silent = true}    
+
+-- nnoremap Q <nop> -- disable ex mode!
+
+nmap("<CR>", ":noh<CR>") -- remove highlighing with ENTER
+
+-- arrow keys move via screen lines instead of logical lines
+imap("<Down>", "<C-o>gj")
+imap("<Up>", "<C-o>gk")
+nmap("<Down>", "gj")
+nmap("<Up>", "gk")
+
+
+-- move the current line up or down
+nmap("<C-j>", ":m+<CR>")
+nmap("<C-k>", ":m-2<CR>")
+imap("<C-j>", "<C-O>:m+<CR><C-O>")
+imap("<C-k>", "<C-O>:m-2<CR><C-O>")
+
+-- Stupid shift key fixes
+cmap("W", "w")
+cmap("WQ", "wq")
+cmap("wQ", "wq")
+cmap("Q", "q")
+cmap("Tabe", "tabe")
+
+-- Visual mode remaps
+-- move the selected block up or down
+vmap("<C-j>", ":m'>+<CR>gv=gv")
+vmap("<C-k>", ":m'<-2<CR>gv=gv")
+
+-- visual shifting (does not exit Visual mode)
+vmap("<", "<gv")
+vmap(">", ">gv")
+
+-- Space as leader key
+vim.g.mapleader = " "
+
+-- leader w = write file
+nmap("<Leader>w", ":w<CR>")
+
+-- End leader
+
+-- jump to last position
+vim.cmd([[autocmd BufRead * autocmd FileType <buffer> ++once if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif]])
+
+-- vim abbreviations
+vim.cmd([[
+ab shapy #!/usr/bin/env python<CR>
+ab ifmain if __name__ == '__main__':<CR>    main()<CR>
+ab sharb #!/usr/bin/env ruby<CR>
+]])
+
+
+-- ========================================================================== --
+-- ==                             PLUGINS                                  == --
+-- ========================================================================== --
+
+-- lazy plugin loader
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- setup plugins
+-- plugins defined in the table below will be loaded lazily
+
+local plugins = {
+  {
+    "hrsh7th/nvim-cmp",
+    -- load cmp on InsertEnter
+    event = "InsertEnter",
+    -- these dependencies will only be loaded when cmp loads
+    -- dependencies are always lazy-loaded unless specified otherwise
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+    },
+    config = function()
+      -- ...
+    end,
+  },
+  { "nvim-tree/nvim-web-devicons", lazy = true },
+  { "nvim-lualine/lualine.nvim" },
+
+}
+
+local opts = {}
+
+require("lazy").setup(plugins, opts)
+
+
