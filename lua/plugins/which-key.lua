@@ -152,9 +152,9 @@ return {
       },
       t = {
         name = "Terminal",
-        f = { ":ToggleTerm direction=float<cr>", "Float" },
-        h = { ":ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-        v = { ":ToggleTerm size=50 direction=vertical<cr>", "Vertical" },
+        f = { ":ToggleTerm direction=float dir=%:p:h<CR><cr>", "Float" },
+        h = { ":ToggleTerm size=10 direction=horizontal dir=%:p:h<CR><cr>", "Horizontal" },
+        v = { ":ToggleTerm size=50 direction=vertical dir=%:p:h<CR><cr>", "Vertical" },
 
         p = {
           function()

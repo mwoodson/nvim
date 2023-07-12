@@ -34,7 +34,6 @@ autocmd("BufWinEnter", {
       return
     end
 
-    print("not returning....")
     vim.w.whitespace_match_number = vim.fn.matchadd('ExtraWhitespace', [[\s\+$]])
   end,
   group = whtSpcGrp,

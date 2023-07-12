@@ -49,7 +49,7 @@ return {
         require("lspconfig.ui.windows").default_options.border = "rounded"
 
         local auto_install = {
-          -- "jsonls",
+          "jsonls",
           "lua_ls",
           -- "clangd",
           "pyright",
